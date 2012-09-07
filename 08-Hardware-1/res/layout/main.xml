@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="escolherOpcao"
+        android:text="@string/testar_camera" />
+
+    <Button
+        android:id="@+id/mediaplayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="escolherOpcao"
+        android:text="@string/testar_media_player" />
+
+    <Button
+        android:id="@+id/localizacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="escolherOpcao"
+        android:text="@string/testar_localizacao" />
+
+</LinearLayout>

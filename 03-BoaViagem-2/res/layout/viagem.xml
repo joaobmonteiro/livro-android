@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="0,1,2" >
+
+    <LinearLayout
+        android:background="#015488"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/nova_viagem"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView android:text="@string/destino" />
+
+    <EditText
+        android:id="@+id/destino"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView android:text="@string/tipo_da_viagem" />
+
+    <RadioGroup
+        android:id="@+id/tipoViagem"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/lazer"
+            android:checked="true"
+            android:text="@string/lazer" />
+
+        <RadioButton
+            android:id="@+id/negocios"
+            android:layout_marginLeft="30dp"
+            android:text="@string/negocios" />
+    </RadioGroup>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="center"
+            android:text="@string/data_da_chegada" />
+
+        <TextView
+            android:layout_gravity="center"
+            android:text="@string/data_da_saida" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/dataChegada"
+            android:onClick="selecionarData"
+            android:text="@string/selecione" />
+
+        <Button
+            android:id="@+id/dataSaida"
+            android:onClick="selecionarData"
+            android:text="@string/selecione" />
+    </TableRow>
+
+    <TextView android:text="@string/orcamento" />
+
+    <EditText
+        android:id="@+id/orcamento"
+        android:inputType="numberDecimal" />
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/quantidade_de_pessoas" />
+
+        <EditText
+            android:id="@+id/quantidadePessoas"
+            android:inputType="number" />
+    </TableRow>
+
+    <Button
+        android:onClick="criarViagem"
+        android:text="@string/criar_nova_viagem" />
+
+</TableLayout>

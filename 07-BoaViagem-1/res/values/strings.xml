@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BoaViagem</string>
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="entrar_google">Utilizar conta Google</string>
+    <string name="erro_autenticacao">Usuário ou senha inválidos</string>
+    <string name="novo_gasto">Novo Gasto</string>
+    <string name="nova_viagem">Nova Viagem</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="minhas_viagens">Minhas Viagens</string>
+    <string name="destino">Destino</string>
+    <string name="tipo_da_viagem">Tipo da viagem</string>
+    <string name="lazer">Lazer</string>
+    <string name="negocios">Negócios</string>
+    <string name="data_da_chegada">Data da chegada</string>
+    <string name="data_da_saida">Data da saída</string>
+    <string name="selecione">Selecione</string>
+    <string name="orcamento">Orçamento</string>
+    <string name="quantidade_de_pessoas">No. de pessoas</string>
+    <string name="salvar">Salvar</string>
+    <string name="categoria">Categoria</string>
+    <string name="valor">Valor</string>
+    <string name="data">Data</string>
+    <string name="descricao">Descrição</string>
+    <string name="local">Local</string>
+    <string name="gastei">Gastei!</string>
+    <string name="remover">Remover</string>
+    <string name="gastos_realizados">Gastos realizados</string>
+    <string name="remover_viagem">Remover viagem</string>
+    <string name="opcoes">Opções</string>
+    <string name="sair">Sair</string>
+    <string name="editar">Editar</string>
+    <string name="confirmacao_exclusao_viagem">Deseja realmente remover a viagem?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="aguarde">Aguarde…</string>
+    <string name="preferencias">Preferências</string>
+    <string name="modo_viagem">Modo Viagem</string>
+    <string name="modo_viagem_sumario">Determina a viagem ativa com base na data atual</string>
+    <string name="valor_limite">Alerta de gastos</string>
+    <string name="valor_limite_sumario">Notifica quando os gastos ultrapassarem o percentual informado</string>
+    <string name="informe_valor_limite">Informe o valor limite (em %)</string>
+    <string name="erro_selecionar_viagem">Erro ao selecionar viagem</string>
+    <string name="manter_conectado">Manter conectado</string>
+    <string name="registro_salvo">Registro salvo com sucesso!</string>
+    <string name="erro_salvar">Erro ao salvar!</string>
+    <string name="conta_inexistente">A conta informada não está registrada!</string>
+
+    <string-array name="categoria_gasto">
+        <item>Alimentação</item>
+        <item>Combustível</item>
+        <item>Transporte</item>
+        <item>Hospedagem</item>
+        <item>Outros</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/preferencias" >
+        <CheckBoxPreference
+            android:key="modo_viagem"
+            android:summary="@string/modo_viagem_sumario"
+            android:title="@string/modo_viagem" />
+
+        <EditTextPreference
+            android:dialogTitle="@string/informe_valor_limite"
+            android:key="valor_limite"
+            android:defaultValue="80"
+            android:summary="@string/valor_limite_sumario"
+            android:title="@string/valor_limite"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

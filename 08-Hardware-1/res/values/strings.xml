@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hardware</string>
+    <string name="capturar_imagem">Capturar Imagem</string>
+    <string name="visualizar_imagem">Visualizar Imagem</string>
+    <string name="testar_camera">Testar Câmera</string>
+    <string name="capturar_video">Capturar Vídeo</string>
+    <string name="visualizar_video">Visualizar Vídeo</string>
+    <string name="testar_localizacao">Testar Localização</string>
+    <string name="executar_video">Executar Vídeo</string>
+    <string name="executar_musica_url">Executar Música URL</string>
+    <string name="executar_musica_arquivo">Executar Música Arquivo</string>
+    <string name="parar">Parar</string>
+    <string name="executar">Executar</string>
+    <string name="pausar">Pausar</string>
+    <string name="testar_media_player">Media Player</string>
+
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Livro De Android</string>
+    <string name="titulo">Informe seu nome</string>
+    <string name="surpreenda_me">Surpreenda-me!</string>
+    <string name="saudacao">Olá</string>
+    
+    <string name="camera">Câmera</string>
+    <string name="outra_atividade">Outra atividade</string>
+    <string name="navegador">Navegador</string>
+    <string name="contatos">Contatos</string>
+
+</resources>
