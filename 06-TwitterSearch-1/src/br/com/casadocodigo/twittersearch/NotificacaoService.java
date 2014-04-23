@@ -1,10 +1,15 @@
 package br.com.casadocodigo.twittersearch;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.github.kevinsawicki.http.HttpRequest;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -14,19 +19,62 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.IBinder;
+import android.util.Base64;
 import android.util.Log;
 
 public class NotificacaoService extends Service {
+	
+	private String accessToken;
+	
+	private class AutenticacaoTask extends AsyncTask<Void, Void, Void>{
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			try {
+				Map<String, String> data = new HashMap<String, String>();
+				data.put("grant_type", "client_credentials");
+				String json = HttpRequest
+						.post("https://api.twitter.com/oauth2/token")
+						.authorization("Basic "+ gerarChave())
+						.form(data)
+						.body();
+
+				JSONObject token = new JSONObject(json);
+				accessToken = token.getString("access_token");
+			} catch (Exception e) {
+				return null;
+			}
+			return null;
+		}
+		
+		private String gerarChave() throws UnsupportedEncodingException{
+			String key = "key";
+			String secret = "secret";
+			String token = key + ":" + secret;
+			String base64 = Base64.encodeToString(token.getBytes(), Base64.NO_WRAP);
+			return base64;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			ScheduledThreadPoolExecutor pool = new ScheduledThreadPoolExecutor(1);
+			long delayInicial = 0;
+			long periodo = 10;
+			TimeUnit unit = TimeUnit.MINUTES;
+			pool.scheduleAtFixedRate(new NotificacaoTask(), delayInicial, periodo, unit);
+		}
+	}
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+		new AutenticacaoTask().execute();
 		ScheduledThreadPoolExecutor pool = new ScheduledThreadPoolExecutor(1);
 		long delayInicial = 0;
 		long periodo = 10;
 		TimeUnit unit = TimeUnit.MINUTES;
-		pool.scheduleAtFixedRate(new NotificacaoTask(), 
-								delayInicial, periodo,unit);
+		pool.scheduleAtFixedRate(new NotificacaoTask(), delayInicial, periodo, unit);
 		return START_STICKY;
 	}
 
@@ -44,31 +92,34 @@ public class NotificacaoService extends Service {
 	}
 
 	private class NotificacaoTask implements Runnable {
-		private String baseUrl = "http://search.twitter.com/search.json";
+		private String baseUrl = "https://api.twitter.com/1.1/search/tweets.json";
 		private String refreshUrl = "?q=@android";
 
 		@Override
 		public void run() {
-			Log.i(getPackageName(), "trabalhando  ");
 			if (!estaConectado()) {
 				return;
 			}
 			try {
-				String json = HTTPUtils.acessar(baseUrl + refreshUrl);
-				JSONObject jsonObject = new JSONObject(json);
-				refreshUrl = jsonObject.getString("refresh_url");
-				Log.i(getPackageName(), "url " + refreshUrl);
+				String conteudo = HttpRequest.get(baseUrl + refreshUrl)
+						.authorization("Bearer " + accessToken)
+						.body();
 
-				JSONArray resultados = jsonObject.getJSONArray("results");
-				Log.i(getPackageName(), "tweets encontrados " + resultados.length());
+				JSONObject jsonObject = new JSONObject(conteudo);
+				refreshUrl = jsonObject.getJSONObject("search_metadata")
+									   .getString("refresh_url");
+
+				JSONArray resultados = jsonObject.getJSONArray("statuses");
+
 				for (int i = 0; i < resultados.length(); i++) {
 					JSONObject tweet = resultados.getJSONObject(i);
 					String texto = tweet.getString("text");
-					String usuario = tweet.getString("from_user");
-
+					String usuario = tweet.getJSONObject("user").getString("screen_name");
 					criarNotificacao(usuario, texto, i);
 				}
-			} catch (Exception e) {Log.e(getPackageName(), e.getMessage(), e);}
+			} catch (Exception e) {
+				Log.e(getPackageName(), e.getMessage(), e);
+			}
 		}
 
 		private void criarNotificacao(String usuario, String texto, int id) {
